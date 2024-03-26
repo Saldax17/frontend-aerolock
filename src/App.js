@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import { Amplify } from 'aws-amplify';
+import { Amplify , Auth} from 'aws-amplify';
 import { awsExports } from './aws-exports';
 import { Authenticator } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
-import { Auth } from "aws-amplify";
 
 Amplify.configure({
   Auth: {
@@ -19,7 +18,16 @@ function App() {
   const [jwtToken, setJwtToken] = useState('');
 
   useEffect(() => {
-    fetchJwtToken();
+    const checkAuth = async () => {
+      try {
+        await Auth.currentAuthenticatedUser();
+        fetchJwtToken();
+      } catch (error) {
+        console.log('User not authenticated:', error);
+      }
+    };
+  
+    checkAuth();
   }, []);
   
   const fetchJwtToken = async () => {
@@ -124,7 +132,7 @@ function App() {
     }}
     >
       {({ signOut, user}) => (
-        <div>Welcome {user.username}
+        <div>Welcome 
         <button onClick={signOut}>Sign out</button>
         <h4>Your JWT token:</h4>
         {jwtToken}
