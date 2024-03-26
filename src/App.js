@@ -43,26 +43,45 @@ function App() {
             <>
               <Authenticator.SignUp.FormFields />
 
-              {/* Custom fields for given_name and family_name */}
-              <div><label>First name</label></div>
+              <div><label>Name</label></div>
               <input
                 type="text"
-                name="given_name"
-                placeholder="Please enter your first name"
+                name="name"
+                placeholder="Please enter your Name"
               />
-              <div><label>Last name</label></div>
-              <input
-                type="text"
-                name="family_name"
-                placeholder="Please enter your last name"
-              />
+
               <div><label>Email</label></div>
               <input
                 type="text"
                 name="email"
-                placeholder="Please enter a valid email"
+                placeholder="Please enter your Email"
               />
 
+              <div><label>CC</label></div>
+              <input
+                type="text"
+                name="CC"
+                placeholder="Please enter your CC"
+              />
+              <div><label>Emergency Contact</label></div>
+              <input
+                type="text"
+                name="emergencyContact"
+                placeholder="Please enter your Emergency Contact"
+              />
+              <div><label>Occupation</label></div>
+              <input
+                type="text"
+                name="Occupation"
+                placeholder="Please enter your Occupation"
+              />
+              <div><label>Tel</label></div>
+              <input
+                type="text"
+                name="Tel"
+                placeholder="Please enter your Tel"
+              />
+       
 
             </>
           );
@@ -71,19 +90,34 @@ function App() {
     }}
     services={{
       async validateCustomSignUp(formData) {
-        if (!formData.given_name) {
+        if (!formData.Name) {
           return {
-            given_name: 'First Name is required',
+            name: 'Name is required',
           };
         }
-        if (!formData.family_name) {
-          return {
-            family_name: 'Last Name is required',
-          };
-        }
-        if (!formData.email) {
+        if (!formData.Email) {
           return {
             email: 'Email is required',
+          };
+        }
+        if (!formData.CC) {
+          return {
+            CC: 'CC is required',
+          };
+        }
+        if (!formData.emergencyContact) {
+          return {
+            emergencyContact: 'emergencyContact is required',
+          };
+        }
+        if (!formData.Occupation) {
+          return {
+            Occupation: 'Occupation is required',
+          };
+        }
+        if (!formData.Tel) {
+          return {
+            Tel: 'Tel is required',
           };
         }
       },
