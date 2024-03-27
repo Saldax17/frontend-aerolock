@@ -6,7 +6,7 @@ const UserListPage = () => {
     const [users, setUsers] = useState("");
 
     useEffect(() => {
-        const url = "https://demo9330779.mockable.io/";
+        const url = "http://demo9951546.mockable.io/users";
 
         const fetchData = async () => {
             try {
@@ -22,7 +22,7 @@ const UserListPage = () => {
         fetchData();
     }, []);
 
-   
+    console.log(users)
     return (
         <>
             <Table striped bordered hover>
