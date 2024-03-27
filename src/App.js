@@ -17,6 +17,7 @@ Amplify.configure({
 function App() {
   const [jwtToken, setJwtToken] = useState('');
 
+
   useEffect(() => {
     const checkAuth = async () => {
       try {
@@ -39,8 +40,7 @@ function App() {
       console.log('Error fetching JWT token:', error);
     }
   };
-  
-  
+    
   return (
     <Authenticator initialState='signIn'
     components={{
@@ -83,6 +83,12 @@ function App() {
                 name="Occupation"
                 placeholder="Please enter your Occupation"
               />
+              <div><label>Role</label></div>
+              <input
+                type="text"
+                name="Role"
+                placeholder="Please enter your Tel"
+              />                  
               <div><label>Tel</label></div>
               <input
                 type="text"
@@ -98,12 +104,12 @@ function App() {
     }}
     services={{
       async validateCustomSignUp(formData) {
-        if (!formData.Name) {
+        if (!formData.name) {
           return {
             name: 'Name is required',
           };
         }
-        if (!formData.Email) {
+        if (!formData.email) {
           return {
             email: 'Email is required',
           };
@@ -121,6 +127,11 @@ function App() {
         if (!formData.Occupation) {
           return {
             Occupation: 'Occupation is required',
+          };
+        }
+        if (!formData.Role) {
+          return {
+            Role: 'Role is required',
           };
         }
         if (!formData.Tel) {
